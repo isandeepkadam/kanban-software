@@ -2,10 +2,11 @@ import { Button , Box} from "@mui/material"
 // import { ReactElement , useState} from "react"
 import { useSelector, useDispatch  } from "react-redux"
 import { add, sub} from "../store/features/counterSlice"
+import { RootState } from "../store/store"
 
 const Home = () => {
 
-  const counter = useSelector((state) => state.counter.counter) 
+  const counter = useSelector((state: RootState) => state.counter.counter) 
 
   const dispatch = useDispatch()
 
