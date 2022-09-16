@@ -2,12 +2,7 @@
   "plugins": ["sonarjs"],
   "extends": ["react-app", "plugin:sonarjs/recommended", "react-app/jest"],
   "rules": {
-    "no-shadow": [
-      "error",
-      {
-        "hoist": "all"
-      }
-    ],
+    "no-shadow": ["error", { "hoist": "all" }],
     "no-shadow-restricted-names": "error",
     "semi": ["error", "never"]
   }
