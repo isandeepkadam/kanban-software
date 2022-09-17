@@ -1,6 +1,6 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom"
-import { Navbar } from "./components"
-import { Home } from "./pages"
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { Navbar } from './components'
+import { Home } from './pages'
 const App = () => {
   return (
     <BrowserRouter>
