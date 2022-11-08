@@ -18,8 +18,9 @@ import {
   Typography,
 } from '@mui/material'
 import { ReactElement, useState } from 'react'
+import LoginForm from './LoginForm'
 
-const pages = ['Backlog', 'Completed', 'Login']
+const pages = ['Backlog', 'Completed']
 type IMobileView = {
   handleOpenNavMenu: (_event: React.MouseEvent<HTMLElement>) => void
   handleCloseNavMenu: () => void
@@ -137,7 +138,7 @@ const Navbar = (): ReactElement => {
               </Button>
             ))}
           </Box>
-
+          <LoginForm />
           <IconButton
             aria-label="search"
             size="large"
@@ -152,7 +153,6 @@ const Navbar = (): ReactElement => {
           <TextField
             placeholder="Search Task"
             size={`${showSearch ? 'small' : 'medium'}`}
-            variant="outlined"
             InputProps={{
               endAdornment: (
                 <InputAdornment
@@ -176,6 +176,8 @@ const Navbar = (): ReactElement => {
               },
               backgroundColor: 'white',
               color: '#1d2021',
+              borderRadius: 2,
+              margin: 2,
             }}
           />
         </Toolbar>
