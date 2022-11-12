@@ -1,4 +1,4 @@
-import { Visibility, VisibilityOff } from '@mui/icons-material'
+import { Preview, Visibility, VisibilityOff } from '@mui/icons-material'
 import {
   Box,
   Button,
@@ -18,26 +18,37 @@ const Register = () => {
     password: '',
     confirmPassword: '',
   })
-  const [loginError, setLoginError] = useState({
-    firstName: true,
-    lastName: true,
-    usernName: true,
-    email: true,
-    password: true,
-    confirmPassword: true,
+  const [registerError, setRegisterError] = useState({
+    firstName: false,
+    lastName: false,
+    userName: false,
+    email: false,
+    password: false,
+    confirmPassword: false,
   })
 
   const togglePassowordVisibility = () => {
     setShowPassword(!showPassword)
   }
 
-  const handleRegistedInputChange = (
+  const handleRegisterInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { name, value } = e.currentTarget
     setRegisterValues({ ...registerValues, [name]: value })
     console.log(registerValues)
   }
+
+  const validateRegistration = () => {
+    const emailRegex = /.+@(gmail|yahoo|outlook|)\.com$/i
+
+    if (!registerValues.firstName) {
+      setRegisterError({ ...registerError, firstName: true })
+    } else {
+      setRegisterError({ ...registerError, firstName: false })
+    }
+  }
+
   return (
     <Box
       sx={{
@@ -49,64 +60,67 @@ const Register = () => {
         <FormGroup>
           <Box sx={{ display: 'flex', flexDirection: 'row' }}>
             <TextField
-              helperText={loginError.firstName && 'Please enter your firstname'}
+              helperText={
+                registerError.firstName && 'Please enter your firstname'
+              }
               label="First Name"
               fullWidth
               type="text"
               required
-              error={loginError.firstName}
+              error={registerError.firstName}
               sx={{ marginRight: '10px' }}
               name="firstName"
               value={registerValues.firstName}
-              onChange={handleRegistedInputChange}
+              onChange={handleRegisterInputChange}
+              onBlur={validateRegistration}
             />
             <TextField
-              helperText={loginError.lastName && 'pjhsf'}
+              helperText={registerError.lastName && 'pjhsf'}
               label="Last Name"
               fullWidth
               type="text"
-              error={loginError.lastName}
+              error={registerError.lastName}
               name="lastName"
               value={registerValues.lastName}
-              onChange={handleRegistedInputChange}
+              onChange={handleRegisterInputChange}
             />
           </Box>
 
           <TextField
-            helperText={loginError.usernName && 'Please enter your email'}
+            helperText={registerError.userName && 'Please enter your email'}
             label="Email"
             fullWidth
             type="email"
-            error={loginError.email}
+            error={registerError.email}
             sx={{ mt: '1em' }}
             name="email"
             value={registerValues.email}
-            onChange={handleRegistedInputChange}
+            onChange={handleRegisterInputChange}
           />
 
           <TextField
             helperText={
-              loginError.usernName && 'please enter your username or email'
+              registerError.userName && 'please enter your username or email'
             }
             label="Username"
             fullWidth
-            error={loginError.usernName}
+            error={registerError.userName}
             type="text"
             sx={{ mt: '1em' }}
             name="userName"
             value={registerValues.userName}
-            onChange={handleRegistedInputChange}
+            onChange={handleRegisterInputChange}
           />
 
           <TextField
-            helperText={loginError.password && 'Please Enter your password'}
+            helperText={registerError.password && 'Please Enter your password'}
             label="Password"
             fullWidth
             sx={{ mt: '1em' }}
             name="password"
-            error={loginError.password}
+            error={registerError.password}
             value={registerValues.password}
-            onChange={handleRegistedInputChange}
+            onChange={handleRegisterInputChange}
             InputProps={{
               inputProps: {
                 type: showPassword ? 'text' : 'password',
@@ -124,14 +138,14 @@ const Register = () => {
           />
 
           <TextField
-            helperText={loginError.password && 'Please Enter your password'}
+            helperText={registerError.password && 'Please Enter your password'}
             label="Confirm Password"
             fullWidth
             sx={{ mt: '1em' }}
             name="confirmPassword"
-            error={loginError.password}
+            error={registerError.password}
             value={registerValues.confirmPassword}
-            onChange={handleRegistedInputChange}
+            onChange={handleRegisterInputChange}
             InputProps={{
               inputProps: {
                 type: showPassword ? 'text' : 'password',
@@ -148,7 +162,7 @@ const Register = () => {
             }}
           />
           <Button sx={{ mt: '3em' }} variant="contained">
-            Login
+            Register
           </Button>
         </FormGroup>
       </form>
@@ -157,3 +171,52 @@ const Register = () => {
 }
 
 export default Register
+
+// const validateRegistration = (
+//   e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+// ) => {
+//   const emailRegex = /.+@(gmail|yahoo|outlook|)\.com$/i
+
+//   if (!registerValues.username) {
+//     setRegistrationErrors((prev) => ({
+//       ...prev,
+//       username: 'Username is required',
+//     }))
+//     setErrors(
+//       !registerValues.username
+//         ? { ...errors, usernameError: true }
+//         : { ...errors, usernameError: false }
+//     )
+//   } else {
+//     registrationErrors.username = ''
+//     setErrors({ ...errors, usernameError: false })
+//   }
+
+//   if (!registerValues.email) {
+//     setRegistrationErrors((prev) => ({
+//       ...prev,
+//       email: 'Email is Required',
+//     }))
+//     setErrors(
+//       !registerValues.email
+//         ? { ...errors, emailError: true }
+//         : { ...errors, emailError: false }
+//     )
+//   } else if (emailRegex.test(registerValues.email)) {
+//     setRegistrationErrors((prev) => ({
+//       ...prev,
+//       email: 'email is not valid',
+//     }))
+//     setErrors(
+//       !registerValues.email
+//         ? { ...errors, emailError: true }
+//         : { ...errors, emailError: false }
+//     )
+//   } else {
+//     setRegistrationErrors((prev) => ({
+//       ...prev,
+//       email: '',
+//     }))
+//     setErrors({ ...errors, emailError: false })
+//   }
+// }

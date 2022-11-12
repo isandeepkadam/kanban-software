@@ -1,6 +1,6 @@
 import { createTheme, ThemeProvider } from '@mui/material'
 import { BrowserRouter } from 'react-router-dom'
-import { Login, Navbar } from './components'
+import { Navbar } from './components'
 
 const theme = createTheme({
   components: {
