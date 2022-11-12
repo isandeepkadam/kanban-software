@@ -1,15 +1,7 @@
 import { Visibility, VisibilityOff } from '@mui/icons-material'
-import {
-  Button,
-  FormGroup,
-  InputAdornment,
-  Paper,
-  TextField,
-  Typography,
-} from '@mui/material'
+import { Button, FormGroup, InputAdornment, TextField } from '@mui/material'
 import { Box } from '@mui/system'
 import { useState } from 'react'
-import { preProcessFile } from 'typescript'
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false)
@@ -91,37 +83,3 @@ const Login = () => {
 }
 
 export default Login
-
-{
-  /* <form onSubmit={handleLogin} noValidate>
-                  <FormControl
-                    sx={{ minWidth: '400px' }}
-                    error={errors.emailError}
-                    variant="standard"
-                  >
-                    <InputLabel required>Email / Usernames</InputLabel>
-                    <Input
-                      autoFocus
-                      autoComplete="email"
-                      type="email"
-                      name="email"
-                    ></Input>
-                    {<FormHelperText>Mandatory</FormHelperText>}
-                    <PasswordField
-                      name="password"
-                      value={registerValues.password}
-                      label="Password"
-                    />
-                    <Button variant="contained" sx={{ mt: 15 }} type="submit">
-                      Log In
-                    </Button>
-                    <FormControlLabel
-                      control={<Checkbox />}
-                      label="Remeber Me"
-                    />
-                    <Typography style={{ margin: 'auto' }}>
-                      Don't have an Account? Go to Sign Up
-                    </Typography>
-                  </FormControl>
-                </form> */
-}
