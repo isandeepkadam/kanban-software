@@ -13,55 +13,6 @@ const LoginRegisterModal = () => {
     setTab(newValue)
   }
 
-  // const validateRegistration = (
-  //   e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  // ) => {
-  //   const emailRegex = /.+@(gmail|yahoo|outlook|)\.com$/i
-
-  //   if (!registerValues.username) {
-  //     setRegistrationErrors((prev) => ({
-  //       ...prev,
-  //       username: 'Username is required',
-  //     }))
-  //     setErrors(
-  //       !registerValues.username
-  //         ? { ...errors, usernameError: true }
-  //         : { ...errors, usernameError: false }
-  //     )
-  //   } else {
-  //     registrationErrors.username = ''
-  //     setErrors({ ...errors, usernameError: false })
-  //   }
-
-  //   if (!registerValues.email) {
-  //     setRegistrationErrors((prev) => ({
-  //       ...prev,
-  //       email: 'Email is Required',
-  //     }))
-  //     setErrors(
-  //       !registerValues.email
-  //         ? { ...errors, emailError: true }
-  //         : { ...errors, emailError: false }
-  //     )
-  //   } else if (emailRegex.test(registerValues.email)) {
-  //     setRegistrationErrors((prev) => ({
-  //       ...prev,
-  //       email: 'email is not valid',
-  //     }))
-  //     setErrors(
-  //       !registerValues.email
-  //         ? { ...errors, emailError: true }
-  //         : { ...errors, emailError: false }
-  //     )
-  //   } else {
-  //     setRegistrationErrors((prev) => ({
-  //       ...prev,
-  //       email: '',
-  //     }))
-  //     setErrors({ ...errors, emailError: false })
-  //   }
-  // }
-
   return (
     <div>
       <Button

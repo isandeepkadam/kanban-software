@@ -43,10 +43,20 @@ const Register = () => {
     const emailRegex = /.+@(gmail|yahoo|outlook|)\.com$/i
 
     if (!registerValues.firstName) {
-      setRegisterError({ ...registerError, firstName: true })
-    } else {
-      setRegisterError({ ...registerError, firstName: false })
+      setRegisterError({
+        ...registerError,
+        firstName: !registerError.firstName,
+      })
     }
+    // else {
+    //   setRegisterError({ ...registerError, firstName: false })
+    // }
+
+    // if (!registerValues.email) {
+    //   setRegisterError({ ...registerError, email: true })
+    // } else {
+    //   setRegisterError({ ...registerError, email: false })
+    // }
   }
 
   return (
