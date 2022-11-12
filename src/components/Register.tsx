@@ -106,6 +106,7 @@ const Register = () => {
             name="password"
             error={loginError.password}
             value={registerValues.password}
+            onChange={handleRegistedInputChange}
             InputProps={{
               inputProps: {
                 type: showPassword ? 'text' : 'password',
@@ -130,6 +131,7 @@ const Register = () => {
             name="confirmPassword"
             error={loginError.password}
             value={registerValues.confirmPassword}
+            onChange={handleRegistedInputChange}
             InputProps={{
               inputProps: {
                 type: showPassword ? 'text' : 'password',
