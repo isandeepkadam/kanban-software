@@ -19,7 +19,8 @@ import {
 } from '@mui/material'
 import { ReactElement, useState } from 'react'
 import { Link } from 'react-router-dom'
-import LoginForm from './LoginForm'
+
+import LoginForm from './LoginRegisterModal'
 
 const pages = ['Backlog', 'Completed']
 type IMobileView = {
