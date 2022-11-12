@@ -18,6 +18,8 @@ import {
   Typography,
 } from '@mui/material'
 import { ReactElement, useState } from 'react'
+import { Link } from 'react-router-dom'
+
 import LoginForm from './LoginRegisterModal'
 
 const pages = ['Backlog', 'Completed']
@@ -37,8 +39,8 @@ const MobileView = ({
       <Typography
         variant="h6"
         noWrap
-        component="a"
-        href="/"
+        component={Link}
+        to="/"
         sx={{
           mr: 2,
           display: { xs: 'none', md: 'flex' },
@@ -82,7 +84,9 @@ const MobileView = ({
         >
           {pages.map((page) => (
             <MenuItem key={page} onClick={handleCloseNavMenu}>
-              <Typography textAlign="center">{page}</Typography>
+              <Typography textAlign="center">
+                <Link to={page.toLowerCase()}>{page}</Link>
+              </Typography>
             </MenuItem>
           ))}
         </Menu>
@@ -93,12 +97,11 @@ const MobileView = ({
 const Navbar = (): ReactElement => {
   const [showSearch, setShowSearch] = useState(false)
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null)
-  const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
+  const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) =>
     setAnchorElNav(event.currentTarget)
-  }
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null)
-  }
+
+  const handleCloseNavMenu = () => setAnchorElNav(null)
+
   return (
     <AppBar position="fixed">
       <Container maxWidth="xl">
@@ -112,8 +115,8 @@ const Navbar = (): ReactElement => {
           <Typography
             variant="h5"
             noWrap
-            component="a"
-            href=""
+            component={Link}
+            to="/"
             sx={{
               mr: 2,
               display: { xs: showSearch ? 'none' : 'flex', md: 'none' },
@@ -131,7 +134,9 @@ const Navbar = (): ReactElement => {
             {pages.map((page) => (
               <Button
                 key={page}
-                onClick={handleCloseNavMenu}
+                component={Link}
+                to={page.toLowerCase()}
+                title={`Visit ${page} page`}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
                 {page}
@@ -178,6 +183,7 @@ const Navbar = (): ReactElement => {
               color: '#1d2021',
               borderRadius: 2,
               margin: 2,
+              paddingX: 3,
             }}
           />
         </Toolbar>
