@@ -18,7 +18,7 @@ import {
   Typography,
 } from '@mui/material'
 import { ReactElement, useState } from 'react'
-import LoginForm from './LoginForm'
+import LoginForm from './LoginRegisterModal'
 
 const pages = ['Backlog', 'Completed']
 type IMobileView = {
