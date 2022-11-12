@@ -63,6 +63,7 @@ const Login = () => {
             helperText={loginError.passoword && 'Please Enter your password'}
             label="Password"
             fullWidth
+            name="password"
             sx={{ mt: '1em' }}
             error={loginError.passoword}
             InputProps={{
