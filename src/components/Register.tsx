@@ -54,6 +54,31 @@ const Register = () => {
       })
     }
   }
+  let emailHelperText = ''
+
+  const validateEmail = () => {
+    const emailRegex = /.+@(gmail|yahoo|outlook|)\.com$/i
+
+    if (!registerValues.email) {
+      setRegisterError({
+        ...registerError,
+        email: true,
+      })
+      emailHelperText = 'Please enter email address'
+    } else if (!emailRegex.test(registerValues.email)) {
+      setRegisterError({
+        ...registerError,
+        email: true,
+      })
+      emailHelperText = 'Email address is invalid'
+    } else {
+      setRegisterError({
+        ...registerError,
+        email: false,
+      })
+      emailHelperText = ''
+    }
+  }
 
   return (
     <Box
@@ -62,7 +87,7 @@ const Register = () => {
         height: '100%',
       }}
     >
-      <form noValidate>
+      <form noValidate autoComplete="true">
         <FormGroup>
           <Box sx={{ display: 'flex', flexDirection: 'row' }}>
             <TextField
@@ -93,7 +118,7 @@ const Register = () => {
           </Box>
 
           <TextField
-            helperText={registerError.userName && 'Please enter your email'}
+            helperText={emailHelperText}
             label="Email"
             fullWidth
             type="email"
@@ -102,12 +127,11 @@ const Register = () => {
             name="email"
             value={registerValues.email}
             onChange={handleRegisterInputChange}
+            onBlur={validateEmail}
           />
 
           <TextField
-            helperText={
-              registerError.userName && 'please enter your username or email'
-            }
+            helperText={registerError.userName && 'please enter your username'}
             label="Username"
             fullWidth
             error={registerError.userName}

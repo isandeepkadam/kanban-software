@@ -1,11 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { TypedUseSelectorHook, useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
+import { taskSlice } from './taskSlice'
 import { userSlice } from './userSlice'
 
 export const store = configureStore({
   reducer: {
     user: userSlice.reducer,
+    task: taskSlice.reducer,
   },
 })
 

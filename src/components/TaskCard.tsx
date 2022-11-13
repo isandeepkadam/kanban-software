@@ -49,15 +49,7 @@ const TaskCard = () => {
         }
         title="Task title"
         subheader="Created: Nov 12, 2022"
-      >
-        <Chip
-          variant="filled"
-          size="small"
-          label="Important"
-          color="success"
-          onDelete={() => console.log('Delete')}
-        />
-      </CardHeader>
+      />
       <CardActions
         sx={{
           display: 'flex',

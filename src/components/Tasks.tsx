@@ -1,4 +1,6 @@
+import { Add } from '@mui/icons-material'
 import { Grid, Paper } from '@mui/material'
+import CreateTask from './CreateTask'
 import TaskCard from './TaskCard'
 
 const Tasks = () => {
@@ -30,6 +32,7 @@ const Tasks = () => {
           <TaskCard />
         </Grid>
       </Grid>
+      <CreateTask />
     </Paper>
   )
 }
