@@ -1,4 +1,4 @@
-import { Button, Grid, Modal, Paper, Tab, Box } from '@mui/material'
+import { Button, Grid, Modal, Paper, Tab, Box, IconButton } from '@mui/material'
 import { Close } from '@mui/icons-material'
 import { useState } from 'react'
 import { TabContext, TabPanel, TabList } from '@mui/lab'
@@ -37,16 +37,19 @@ const LoginRegisterModal = () => {
               padding: 1,
               height: '80vh',
               margin: '100px auto auto',
-              Width: '25rem',
+              Width: { xs: '15rem', sm: '20rem', md: '25rem' },
             }}
           >
-            <Close
+            <IconButton
+              aria-label="close"
               sx={{
-                position: 'relative',
-                left: '420px',
+                left: { xs: '16rem', sm: '20rem', md: '25rem' },
+                color: 'black',
               }}
               onClick={() => setOpen(false)}
-            ></Close>
+            >
+              <Close></Close>
+            </IconButton>
 
             <TabContext value={tab}>
               <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>

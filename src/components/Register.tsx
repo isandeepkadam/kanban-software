@@ -1,4 +1,4 @@
-import { Preview, Visibility, VisibilityOff } from '@mui/icons-material'
+import { Visibility, VisibilityOff } from '@mui/icons-material'
 import {
   Box,
   Button,
@@ -40,29 +40,25 @@ const Register = () => {
   }
 
   const validateRegistration = () => {
-    const emailRegex = /.+@(gmail|yahoo|outlook|)\.com$/i
+    // const emailRegex = /.+@(gmail|yahoo|outlook|)\.com$/i
 
     if (!registerValues.firstName) {
       setRegisterError({
         ...registerError,
-        firstName: !registerError.firstName,
+        firstName: true,
+      })
+    } else {
+      setRegisterError({
+        ...registerError,
+        firstName: false,
       })
     }
-    // else {
-    //   setRegisterError({ ...registerError, firstName: false })
-    // }
-
-    // if (!registerValues.email) {
-    //   setRegisterError({ ...registerError, email: true })
-    // } else {
-    //   setRegisterError({ ...registerError, email: false })
-    // }
   }
 
   return (
     <Box
       sx={{
-        width: '25rem',
+        width: { xs: '15rem', sm: '20rem', md: '25rem' },
         height: '100%',
       }}
     >

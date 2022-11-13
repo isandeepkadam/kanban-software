@@ -1,22 +1,13 @@
-import { createTheme, ThemeProvider } from '@mui/material'
+import { ThemeProvider } from '@mui/material'
 import { BrowserRouter } from 'react-router-dom'
-import { Navbar } from './components'
-
-const theme = createTheme({
-  components: {
-    MuiTextField: {
-      defaultProps: {
-        variant: 'standard',
-      },
-    },
-  },
-})
+import { Home } from './pages'
+import { theme } from './theme'
 
 const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <BrowserRouter>
-        <Navbar />
+        <Home />
       </BrowserRouter>
     </ThemeProvider>
   )

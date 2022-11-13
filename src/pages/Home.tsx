@@ -1,9 +1,9 @@
-import React from 'react'
-import { Navbar } from '../components'
+import { Navbar, Tasks } from '../components'
 export default function Home() {
   return (
     <>
       <Navbar />
+      <Tasks />
     </>
   )
 }

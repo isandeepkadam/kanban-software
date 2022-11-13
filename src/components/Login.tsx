@@ -1,6 +1,11 @@
 import { Visibility, VisibilityOff } from '@mui/icons-material'
-import { Button, FormGroup, InputAdornment, TextField } from '@mui/material'
-import { Box } from '@mui/system'
+import {
+  Box,
+  Button,
+  FormGroup,
+  InputAdornment,
+  TextField,
+} from '@mui/material'
 import { useState } from 'react'
 
 const Login = () => {
@@ -31,7 +36,7 @@ const Login = () => {
   return (
     <Box
       sx={{
-        width: '25rem',
+        width: { xs: '15rem', sm: '20rem', md: '25rem' },
         height: '100%',
         mt: '1rem',
       }}
