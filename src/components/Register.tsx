@@ -54,29 +54,20 @@ const Register = () => {
       })
     }
   }
-  let emailHelperText = ''
 
   const validateEmail = () => {
     const emailRegex = /.+@(gmail|yahoo|outlook|)\.com$/i
 
-    if (!registerValues.email) {
+    if (!registerValues.email || !emailRegex.test(registerValues.email)) {
       setRegisterError({
         ...registerError,
         email: true,
       })
-      emailHelperText = 'Please enter email address'
-    } else if (!emailRegex.test(registerValues.email)) {
-      setRegisterError({
-        ...registerError,
-        email: true,
-      })
-      emailHelperText = 'Email address is invalid'
     } else {
       setRegisterError({
         ...registerError,
         email: false,
       })
-      emailHelperText = ''
     }
   }
 
@@ -118,7 +109,7 @@ const Register = () => {
           </Box>
 
           <TextField
-            helperText={emailHelperText}
+            helperText={registerError.email && 'Email is not valid'}
             label="Email"
             fullWidth
             type="email"
@@ -191,7 +182,7 @@ const Register = () => {
               ),
             }}
           />
-          <Button sx={{ mt: '3em' }} variant="contained">
+          <Button sx={{ mt: { xs: '2em', md: '3em' } }} variant="contained">
             Register
           </Button>
         </FormGroup>

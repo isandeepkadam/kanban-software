@@ -11,8 +11,9 @@ import {
   Typography,
 } from '@mui/material'
 import { useState } from 'react'
+import { taskInterface } from '../store/taskSlice'
 
-const TaskCard = () => {
+const TaskCard: React.FunctionComponent<taskInterface> = ({ ...note }) => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
   const open = Boolean(anchorEl)
   const handleClose = () => {
@@ -47,9 +48,10 @@ const TaskCard = () => {
             </Menu>
           </>
         }
-        title="Task title"
-        subheader="Created: Nov 12, 2022"
+        title={note.title}
+        subheader={`Created: ${note.creationDate}`}
       />
+      <Typography sx={{ fontSize: '1rem' }}>In Progress...</Typography>
       <CardActions
         sx={{
           display: 'flex',
@@ -57,33 +59,21 @@ const TaskCard = () => {
         }}
       >
         <Box>
-          <Chip
-            variant="filled"
-            size="small"
-            label="Important"
-            color="success"
-            onDelete={() => console.log('Delete')}
-          />
-          <Chip
-            variant="filled"
-            size="small"
-            label="Issue"
-            color="error"
-            onDelete={() => console.log('Delete')}
-          />
-          <Chip
-            variant="filled"
-            size="small"
-            label="bug"
-            color="info"
-            onDelete={() => console.log('Delete')}
-          />
+          {note.tags.map((tag) => (
+            <Chip
+              key={tag}
+              variant="filled"
+              size="small"
+              label={tag}
+              color="success"
+            />
+          ))}
         </Box>
       </CardActions>
       <Typography
         sx={{ fontSize: '10px', color: 'darkgray', padding: '.2rem 1rem' }}
       >
-        Created by Shubham
+        Created by {note.creator}
       </Typography>
     </Card>
   )

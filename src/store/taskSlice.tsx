@@ -1,9 +1,10 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
-interface taskInterface {
+export interface taskInterface {
+  id: number
   title: string
   description: string
-  creationDate: Date
+  creationDate: string
   tags: string[]
   creator: string
   status: string

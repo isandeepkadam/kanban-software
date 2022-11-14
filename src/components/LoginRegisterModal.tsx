@@ -1,4 +1,4 @@
-import { Button, Grid, Modal, Paper, Tab, Box, IconButton } from '@mui/material'
+import { Button, Modal, Paper, Tab, Box, IconButton } from '@mui/material'
 import { Close } from '@mui/icons-material'
 import { useState } from 'react'
 import { TabContext, TabPanel, TabList } from '@mui/lab'
@@ -17,8 +17,8 @@ const LoginRegisterModal = () => {
     <div>
       <Button
         variant="outlined"
-        sx={{ color: 'white' }}
         onClick={() => setOpen(true)}
+        sx={{ color: 'white' }}
       >
         Login
       </Button>
@@ -28,47 +28,46 @@ const LoginRegisterModal = () => {
         BackdropProps={{
           timeout: 500,
         }}
+        sx={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
       >
-        <Grid container>
-          <Paper
-            elevation={10}
+        <Paper
+          elevation={10}
+          sx={{
+            padding: 1,
+            height: '80vh',
+            Width: { xs: '15rem', sm: '20rem', md: '25rem' },
+          }}
+        >
+          <IconButton
+            aria-label="close"
             sx={{
-              position: 'relative',
-              padding: 1,
-              height: '80vh',
-              margin: '100px auto auto',
-              Width: { xs: '15rem', sm: '20rem', md: '25rem' },
+              left: { xs: '16rem', sm: '20rem', md: '25rem' },
+              color: 'black',
             }}
+            onClick={() => setOpen(false)}
           >
-            <IconButton
-              aria-label="close"
-              sx={{
-                left: { xs: '16rem', sm: '20rem', md: '25rem' },
-                color: 'black',
-              }}
-              onClick={() => setOpen(false)}
-            >
-              <Close></Close>
-            </IconButton>
+            <Close></Close>
+          </IconButton>
 
-            <TabContext value={tab}>
-              <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-                <TabList onChange={onTabChange} variant="fullWidth">
-                  <Tab label="Login" value="1" />
-
-                  <Tab label="Sign up" value="2" />
-                </TabList>
-              </Box>
-              <TabPanel value="1">
-                <Login />
-              </TabPanel>
-
-              <TabPanel value="2">
-                <Register />
-              </TabPanel>
-            </TabContext>
-          </Paper>
-        </Grid>
+          <TabContext value={tab}>
+            <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+              <TabList onChange={onTabChange} variant="fullWidth">
+                <Tab label="Login" value="1" />
+                <Tab label="Sign up" value="2" />
+              </TabList>
+            </Box>
+            <TabPanel value="1">
+              <Login />
+            </TabPanel>
+            <TabPanel value="2">
+              <Register />
+            </TabPanel>
+          </TabContext>
+        </Paper>
       </Modal>
     </div>
   )
