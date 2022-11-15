@@ -8,16 +8,56 @@ import {
 } from '@mui/material'
 import { useState } from 'react'
 
+export interface loginInterface {
+  username: string
+  password: string
+}
+
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false)
   const [loginValues, setLoginValues] = useState({ username: '', password: '' })
   const [loginError, setLoginError] = useState({
     username: false,
-    passoword: false,
+    password: false,
   })
 
   const togglePassowordVisibility = () => {
     setShowPassword(!showPassword)
+  }
+
+  const emailRegex = /.+@(gmail|yahoo|outlook|)\.com$/i
+  const usernameRegex = /^(?!.*\.\.)(?!.*\.$)[^\W][\w.]{0,29}$/i
+
+  const validateUserNameEmail = () => {
+    if (
+      !loginValues.username ||
+      (!usernameRegex.test(loginValues.username) &&
+        !emailRegex.test(loginValues.username))
+    ) {
+      setLoginError({
+        ...loginError,
+        username: true,
+      })
+    } else {
+      setLoginError({
+        ...loginError,
+        username: false,
+      })
+    }
+  }
+
+  const validatePassword = () => {
+    if (!loginValues.password) {
+      setLoginError({
+        ...loginError,
+        password: true,
+      })
+    } else {
+      setLoginError({
+        ...loginError,
+        password: false,
+      })
+    }
   }
 
   const handleLoginInput = (
@@ -54,15 +94,18 @@ const Login = () => {
             name="username"
             value={loginValues.username}
             onChange={handleLoginInput}
+            onBlur={validateUserNameEmail}
           />
 
           <TextField
-            helperText={loginError.passoword && 'Please Enter your password'}
+            helperText={loginError.password && 'Please Enter your password'}
             label="Password"
             fullWidth
             name="password"
             sx={{ mt: '1em' }}
-            error={loginError.passoword}
+            error={loginError.password}
+            onChange={handleLoginInput}
+            onBlur={validatePassword}
             InputProps={{
               inputProps: {
                 type: showPassword ? 'text' : 'password',

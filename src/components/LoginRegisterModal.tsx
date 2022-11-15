@@ -38,7 +38,7 @@ const LoginRegisterModal = () => {
           elevation={10}
           sx={{
             padding: 1,
-            height: '80vh',
+            minHeight: '80vh',
             Width: { xs: '15rem', sm: '20rem', md: '25rem' },
           }}
         >

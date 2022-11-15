@@ -24,7 +24,6 @@ const TaskCard: React.FunctionComponent<taskInterface> = ({ ...note }) => {
   }
 
   const handleComplete = () => {
-    console.log('completed')
     setAnchorEl(null)
   }
 
@@ -51,7 +50,18 @@ const TaskCard: React.FunctionComponent<taskInterface> = ({ ...note }) => {
         title={note.title}
         subheader={`Created: ${note.creationDate}`}
       />
-      <Typography sx={{ fontSize: '1rem' }}>In Progress...</Typography>
+      <Typography
+        sx={{
+          background: '#C1E1C1',
+          fontSize: '.8em',
+          width: 'max-content',
+          borderRadius: '.5em',
+          padding: '.1em 1em',
+          marginLeft: '.5em',
+        }}
+      >
+        {note.status}
+      </Typography>
       <CardActions
         sx={{
           display: 'flex',
@@ -78,5 +88,4 @@ const TaskCard: React.FunctionComponent<taskInterface> = ({ ...note }) => {
     </Card>
   )
 }
-
 export default TaskCard

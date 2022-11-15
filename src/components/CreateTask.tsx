@@ -10,7 +10,6 @@ import {
   Select,
   TextField,
   Typography,
-  SelectChangeEvent,
   Checkbox,
   FormControl,
   InputLabel,
@@ -20,6 +19,7 @@ import { useState } from 'react'
 import { useAppDispatch } from '../store'
 import { createTask, taskInterface } from '../store/taskSlice'
 
+//Styles for dropdown tags options
 const ITEM_HEIGHT = 30
 const ITEM_PADDING_TOP = 8
 const MenuProps = {
@@ -34,11 +34,6 @@ const MenuProps = {
 const labels = ['Important', 'Bug', 'Issue', 'High Priority']
 
 const CreateTask = () => {
-  const [tags, setTags] = useState<string[]>([])
-  const [open, setOpen] = useState(false)
-  const handleOpen = () => setOpen(true)
-  const handleClose = () => setOpen(false)
-
   const [newTask, setNewTask] = useState<taskInterface>({
     id: 0,
     title: '',
@@ -48,26 +43,32 @@ const CreateTask = () => {
     creator: '',
     status: '',
   })
+  const [open, setOpen] = useState(false)
+  const handleOpen = () => {
+    setOpen(true)
+    setNewTask({
+      id: 0,
+      title: '',
+      description: '',
+      creationDate: '',
+      tags: [],
+      creator: '',
+      status: '',
+    })
+  }
+  const handleClose = () => {
+    setOpen(false)
+  }
 
   const dispatch = useAppDispatch()
 
-  const handleChange = (event: SelectChangeEvent<typeof tags>) => {
-    const {
-      target: { value },
-    } = event
-    setTags(typeof value === 'string' ? value.split(',') : value)
-  }
-
   const createNewTask = () => {
-    const date = new Date().toDateString()
-    console.log(date)
     setNewTask({
       ...newTask,
       id: Math.round(Math.random() * Date.now()),
-      creationDate: date.slice(4),
-      tags: tags,
-      creator: 'sandy',
-      status: 'completed',
+      creationDate: new Date().toDateString().slice(4),
+      creator: 'Sandy',
+      status: 'In Progress...',
     })
     dispatch(createTask(newTask))
   }
@@ -134,9 +135,17 @@ const CreateTask = () => {
                 }}
                 variant="standard"
                 multiple
-                value={tags}
+                value={newTask.tags}
                 size="small"
-                onChange={handleChange}
+                onChange={(e) =>
+                  setNewTask({
+                    ...newTask,
+                    tags:
+                      typeof e.target.value === 'string'
+                        ? e.target.value.split(',')
+                        : e.target.value,
+                  })
+                }
                 input={<OutlinedInput label="Mark as" />}
                 MenuProps={MenuProps}
                 renderValue={(selected) => (
@@ -149,7 +158,7 @@ const CreateTask = () => {
               >
                 {labels.map((tag) => (
                   <MenuItem key={tag} value={tag}>
-                    <Checkbox checked={tags.indexOf(tag) > -1} />
+                    <Checkbox checked={newTask.tags.indexOf(tag) > -1} />
                     <ListItemText primary={tag} />
                   </MenuItem>
                 ))}
