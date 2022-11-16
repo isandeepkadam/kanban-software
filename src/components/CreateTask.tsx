@@ -44,6 +44,7 @@ const CreateTask = () => {
     status: '',
   })
   const [open, setOpen] = useState(false)
+  const [errorMessage, setErrorMessage] = useState(false)
   const handleOpen = () => {
     setOpen(true)
     setNewTask({
@@ -62,15 +63,30 @@ const CreateTask = () => {
 
   const dispatch = useAppDispatch()
 
-  const createNewTask = () => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target
     setNewTask({
       ...newTask,
+      [name]: value,
       id: Math.round(Math.random() * Date.now()),
       creationDate: new Date().toDateString().slice(4),
       creator: 'Sandy',
       status: 'In Progress...',
     })
-    dispatch(createTask(newTask))
+  }
+
+  const createNewTask = () => {
+    newTask.title ? dispatch(createTask(newTask)) : setErrorMessage(true)
+    setNewTask({
+      ...newTask,
+      id: 0,
+      title: '',
+      description: '',
+      creationDate: '',
+      tags: [],
+    })
   }
 
   return (
@@ -113,16 +129,24 @@ const CreateTask = () => {
             label="Title"
             type="text"
             name="title"
-            onChange={(e) => setNewTask({ ...newTask, title: e.target.value })}
+            value={newTask.title}
+            onChange={(e) => handleChange(e)}
+            error={errorMessage}
+            onBlur={() => {
+              newTask.title ? setErrorMessage(false) : setErrorMessage(true)
+            }}
+            helperText={errorMessage && "Title Can't be empty"}
           />
           <TextField
             fullWidth
             type="textarea"
+            multiline
+            rows={3}
             label="Description"
             name="description"
-            onChange={(e) =>
-              setNewTask({ ...newTask, description: e.target.value })
-            }
+            value={newTask.description}
+            onChange={(e) => handleChange(e)}
+            sx={{ overflow: 'visible' }}
           />
 
           <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
@@ -158,7 +182,10 @@ const CreateTask = () => {
               >
                 {labels.map((tag) => (
                   <MenuItem key={tag} value={tag}>
-                    <Checkbox checked={newTask.tags.indexOf(tag) > -1} />
+                    <Checkbox
+                      checked={newTask.tags.indexOf(tag) > -1}
+                      sx={{ color: 'red' }}
+                    />
                     <ListItemText primary={tag} />
                   </MenuItem>
                 ))}
